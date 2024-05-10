@@ -8,7 +8,7 @@ const HeroBanner = () => {
     return (
         <div className="max-w-80 md:max-w-xl lg:max-w-4xl xl:max-w-7xl mx-auto mt-2 md:mt-4 lg:mt-5 xl:mt-6 font-poppins">
 
-            <swiper-container class="mySwiper" slides-per-view="1" speed="500" loop="true" css-mode="true" pagination="true" pagination-clickable="true" navigation="true" space-between="30"
+            <swiper-container class="mySwiper" slides-per-view="1" speed="500" loop="true" css-mode="true" pagination="true" pagination-clickable="true" navigation="false" space-between="30"
                 centered-slides="true" autoplay-delay="2500" autoplay-disable-on-interaction="false">
 
                 <swiper-slide>
