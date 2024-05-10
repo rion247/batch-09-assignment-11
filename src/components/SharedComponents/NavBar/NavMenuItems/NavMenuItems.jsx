@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import 'react-tooltip/dist/react-tooltip.css'
+import { Tooltip } from 'react-tooltip';
 
 const NavMenuItems = () => {
 
@@ -14,19 +16,19 @@ const NavMenuItems = () => {
     const handleThemeButton = (e) => {
         if (e.target.checked) {
             SetTheme('dark');
-        }else{
+        } else {
             SetTheme('light');
         }
     }
 
     const links = <>
 
-        <NavLink to='/' className={({ isActive }) => isActive ? "px-3 xl:px-5 py-2 bg-slate-600 rounded font-medium" : "px-3 xl:px-5 py-2 bg-transparent font-normal"}>Home</NavLink>
-        <NavLink to='/allJobs' className={({ isActive }) => isActive ? "px-3 xl:px-5 py-2 bg-slate-600 rounded font-medium" : "px-3 xl:px-5 py-2 bg-transparent font-normal"}>All Jobs</NavLink>
-        <NavLink to='/appliedJobs' className={({ isActive }) => isActive ? "px-3 xl:px-5 py-2 bg-slate-600 rounded font-medium" : "px-3 xl:px-5 py-2 bg-transparent font-normal"}>Applied Jobs</NavLink>
-        <NavLink to='/addJob' className={({ isActive }) => isActive ? "px-3 xl:px-5 py-2 bg-slate-600 rounded font-medium" : "px-3 xl:px-5 py-2 bg-transparent font-normal"}>Add Job</NavLink>
-        <NavLink to='/myJob' className={({ isActive }) => isActive ? "px-3 xl:px-5 py-2 bg-slate-600 rounded font-medium" : "px-3 xl:px-5 py-2 bg-transparent font-normal"}>My Jobs</NavLink>
-        <NavLink to='/blogs' className={({ isActive }) => isActive ? "px-3 xl:px-5 py-2 bg-slate-600 rounded font-medium" : "px-3 xl:px-5 py-2 bg-transparent font-normal"}>Blogs</NavLink>
+        <NavLink data-tooltip-id="my-tooltip" data-tooltip-content="Home" data-tooltip-place="bottom" to='/' className={({ isActive }) => isActive ? "px-3 xl:px-5 py-2 bg-slate-600 rounded font-medium" : "px-3 xl:px-5 py-2 bg-transparent font-normal"}>Home</NavLink>
+        <NavLink data-tooltip-id="my-tooltip" data-tooltip-content="All Jobs" data-tooltip-place="bottom" to='/allJobs' className={({ isActive }) => isActive ? "px-3 xl:px-5 py-2 bg-slate-600 rounded font-medium" : "px-3 xl:px-5 py-2 bg-transparent font-normal"}>All Jobs</NavLink>
+        <NavLink data-tooltip-id="my-tooltip" data-tooltip-content="Applied Jobs" data-tooltip-place="bottom" to='/appliedJobs' className={({ isActive }) => isActive ? "px-3 xl:px-5 py-2 bg-slate-600 rounded font-medium" : "px-3 xl:px-5 py-2 bg-transparent font-normal"}>Applied Jobs</NavLink>
+        <NavLink data-tooltip-id="my-tooltip" data-tooltip-content="Add Job" data-tooltip-place="bottom" to='/addJob' className={({ isActive }) => isActive ? "px-3 xl:px-5 py-2 bg-slate-600 rounded font-medium" : "px-3 xl:px-5 py-2 bg-transparent font-normal"}>Add Job</NavLink>
+        <NavLink data-tooltip-id="my-tooltip" data-tooltip-content="My Jobs" data-tooltip-place="bottom" to='/myJob' className={({ isActive }) => isActive ? "px-3 xl:px-5 py-2 bg-slate-600 rounded font-medium" : "px-3 xl:px-5 py-2 bg-transparent font-normal"}>My Jobs</NavLink>
+        <NavLink data-tooltip-id="my-tooltip" data-tooltip-content="Blogs" data-tooltip-place="bottom" to='/blogs' className={({ isActive }) => isActive ? "px-3 xl:px-5 py-2 bg-slate-600 rounded font-medium" : "px-3 xl:px-5 py-2 bg-transparent font-normal"}>Blogs</NavLink>
 
     </>
 
@@ -58,6 +60,8 @@ const NavMenuItems = () => {
                 </label>
 
             </div>
+
+            <Tooltip id="my-tooltip" />
 
         </div>
     );
