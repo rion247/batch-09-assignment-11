@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet";
+import HeroBanner from "./HeroBanner/HeroBanner";
 
 const HomePage = () => {
     return (
@@ -7,8 +8,11 @@ const HomePage = () => {
             <Helmet>
                 <title>Root Jobs | Home Page</title>
             </Helmet>
+            
+            <HeroBanner />
 
-            <h1>Home Page</h1>
+
+
 
         </div>
     );
