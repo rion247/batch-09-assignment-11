@@ -2,6 +2,7 @@ import { Navigate } from "react-router-dom";
 import useAuthHook from "../../CustomeHooks/useAuthHook/useAuthHook";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import { PropTypes } from 'prop-types';
+import { toast } from "react-toastify";
 
 const PrivateRoute = ({ children }) => {
 
