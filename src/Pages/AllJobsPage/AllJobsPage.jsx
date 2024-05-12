@@ -35,11 +35,11 @@ const AllJobsPage = () => {
 
                 <thead className="dark:bg-gray-300">
                     <tr className="text-left">
-                        <th className="p-3">Job Title</th>
-                        <th className="p-3">Job Posting Date</th>
-                        <th className="p-3">Application Deadline</th>
-                        <th className="p-3">Salary Range</th>
-                        <th className="p-3">Action</th>
+                        <th className="p-1 md:p-2 lg:p-3">Job Title</th>
+                        <th className="p-1 md:p-2 lg:p-3">Job Posting Date</th>
+                        <th className="p-1 md:p-2 lg:p-3">Application Deadline</th>
+                        <th className="p-1 md:p-2 lg:p-3">Salary Range</th>
+                        <th className="p-1 md:p-2 lg:p-3">Action</th>
                     </tr>
                 </thead>
 
