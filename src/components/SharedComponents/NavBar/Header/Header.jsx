@@ -1,8 +1,23 @@
 import { Link } from "react-router-dom";
 import logoImg from '../../../../assets/logoImage.png'
 import userImg from '../../../../assets/user.png'
+import useAuthHook from './../../../../CustomeHooks/useAuthHook/useAuthHook';
+import { toast } from "react-toastify";
 
 const Header = () => {
+
+    const { user, signOutUser, } = useAuthHook();
+    console.log(user);
+
+    const handleLogOutButton = () => {
+        signOutUser()
+            .then(() => {
+                toast('User Logged Out Successfully')
+            }).catch((error) => {
+                console.log(error);
+            });
+    }
+
     return (
         <div className="navbar max-w-[360px] md:max-w-xl lg:max-w-4xl xl:max-w-7xl mx-auto mt-2 md:mt-4 lg:mt-5 xl:mt-6 font-poppins flex items-center mb-2 md:mb-4 lg:mb-6 xl:mb-8">
 
@@ -18,14 +33,20 @@ const Header = () => {
                 <div className="dropdown dropdown-hover dropdown-bottom">
                     <div tabIndex={0} role="button" className="md:btn md:btn-ghost md:btn-circle avatar flex items-center">
                         <div className="w-5 md:w-7 lg:w-8 xl:w-10 rounded-full ">
-                            <img alt="...Loading" src={userImg} />
+                            {
+                                user ? <img alt="...Loading" src={user?.photoURL} /> : <img alt="...Loading" src={userImg} />
+                            }
+
                         </div>
                     </div>
-                    <ul tabIndex={0} className="menu menu-xs md:menu-sm dropdown-content mt-3 z-50 p-2 shadow bg-base-100 rounded-box w-40 md:w-52 lg:w-56 xl:w-60">
-                        <li><a>Vivian Rion</a></li>
-                        <li><a>Update Profile</a></li>
-                        <li><a>Logout</a></li>
-                    </ul>
+                    {
+                        user && <ul tabIndex={0} className="menu menu-xs md:menu-sm dropdown-content mt-3 z-50 p-2 shadow bg-base-100 rounded-box w-40 md:w-52 lg:w-56 xl:w-60">
+                            <li><a>{user?.displayName}</a></li>
+                            <li><a>Update Profile</a></li>
+                            <li onClick={handleLogOutButton}><a>Logout</a></li>
+                        </ul>
+                    }
+
                 </div>
 
                 <Link to='/logIn' className="px-2 md:px-3 xl:px-6 py-1 md:py-2 bg-orange-400 hover:bg-orange-500 text-white rounded md:rounded lg:rounded-md xl:rounded-lg text-xs md:text-sm xl:text-lg uppercase">LogIn</Link>

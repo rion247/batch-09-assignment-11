@@ -5,10 +5,14 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form"
 import useAuthHook from './../../CustomeHooks/useAuthHook/useAuthHook';
 import { toast } from "react-toastify";
+import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const LogInPage = () => {
 
-    const { signInUserManually, googleSignIn } = useAuthHook();
+    const { signInUserManually, googleSignIn, SetReload } = useAuthHook();
+
+    const [showPassWord, SetShowPassWord] = useState(false);
 
     const location = useLocation();
 
@@ -17,20 +21,21 @@ const LogInPage = () => {
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
     } = useForm()
 
     const onSubmit = (data) => {
         const email = data.email;
         const password = data.password;
-        const tokenForEmail = { email };
-        console.log(tokenForEmail);
 
         signInUserManually(email, password)
             .then((result) => {
                 toast.success('Login Successful');
                 navigate(location?.state ? location.state : '/logIn');
                 console.log(result.user);
+                SetReload();
+                reset();
             })
             .catch((error) => {
                 toast.error(error.message);
@@ -43,9 +48,15 @@ const LogInPage = () => {
                 toast.success('Login Successful');
                 navigate(location?.state ? location.state : '/logIn');
                 console.log(result.user);
+                SetReload();
+                reset();
             }).catch((error) => {
                 toast.error(error.message);
             });
+    }
+
+    const handleshowPassWordButton = () =>{
+SetShowPassWord(!showPassWord);
     }
 
     return (
@@ -101,22 +112,30 @@ const LogInPage = () => {
                             {errors.email && <span className="text-red-500">This field is required</span>}
                         </div>
 
-                        <div className="space-y-3">
+                        <div className="space-y-3 relative">
                             <div className="flex justify-between">
                                 <label htmlFor="password" className="text-base">Password</label>
                                 <a rel="noopener noreferrer" href="#" className="text-xs hover:underline dark:text-gray-600">Forgot password?</a>
                             </div>
-                            <input type="password" name="password" id="password" placeholder="*****" className="w-full px-4 py-4 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" {...register("password", { required: true })} />
+                            <input type={showPassWord ? "text " : "password"} name="password" id="password" placeholder="*****" className="w-full px-4 py-4 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" {...register("password", { required: true })} />
 
                             {errors.password && <span className="text-red-500">This field is required</span>}
+
+                            <div onClick={handleshowPassWordButton} className="absolute text-sm md:text-base xl:text-lg top-11 right-4 text-neutral-500">
+
+                                {
+                                    showPassWord ? <FaEyeSlash /> : <FaEye />
+                                }
+
+                            </div>
 
                         </div>
 
                     </div>
 
-                    <button type="submit" className="w-full px-8 py-3 font-semibold bg-sky-900 hover:bg-sky-800 text-white rounded-md dark:bg-violet-600 dark:text-gray-50">Sign in</button>
+                    <button type="submit" className="w-full px-8 py-3 font-semibold bg-sky-900 hover:bg-sky-800 text-white rounded-md dark:bg-violet-600 dark:text-gray-50">Login</button>
 
-                    <p className="text-base text-center dark:text-gray-600">Dont have account?
+                    <p className="text-sm md:text-base text-center dark:text-gray-600">Dont have account?
                         <Link to='/registration' rel="noopener noreferrer" className="focus:underline hover:underline text-orange-500 font-medium"> Register Now</Link>
                     </p>
                 </form>

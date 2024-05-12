@@ -32,8 +32,15 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+           const tokenForEmail = currentUser?.email || user?.email;
+           const verifyUserWithEmail = {email: tokenForEmail};
+           console.log(verifyUserWithEmail);
+
+            console.log(tokenForEmail);
+
             if (currentUser) {
                 SetUser(currentUser);
+                
                 SetLoading(false);
             } else {
                 SetUser(null);
@@ -45,15 +52,15 @@ const AuthProvider = ({ children }) => {
             unSubscribe();
         }
 
-    }, [reload])
+    }, [reload, user])
 
     const signOutUser = () => {
-        signOut(auth);
+        return signOut(auth);
     }
 
     const userProfileUpdater = (name, photo) => {
-        updateProfile(auth.currentUser, {
-            displayName: name, photoURL: photo
+        return updateProfile(auth.currentUser, {
+            displayName: name, photoURL: photo,
         })
     }
 
