@@ -32,7 +32,7 @@ const LogInPage = () => {
         signInUserManually(email, password)
             .then((result) => {
                 toast.success('Login Successful');
-                navigate(location?.state ? location.state : '/logIn');
+                navigate(location?.state ? location?.state : '/logIn');
                 console.log(result.user);
                 SetReload();
                 reset();
@@ -46,7 +46,7 @@ const LogInPage = () => {
         googleSignIn()
             .then((result) => {
                 toast.success('Login Successful');
-                navigate(location?.state ? location.state : '/logIn');
+                navigate(location?.state ? location?.state : '/logIn');
                 console.log(result.user);
                 SetReload();
                 reset();
@@ -55,8 +55,8 @@ const LogInPage = () => {
             });
     }
 
-    const handleshowPassWordButton = () =>{
-SetShowPassWord(!showPassWord);
+    const handleshowPassWordButton = () => {
+        SetShowPassWord(!showPassWord);
     }
 
     return (

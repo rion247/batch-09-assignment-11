@@ -12,7 +12,7 @@ const AuthProvider = ({ children }) => {
 
     const [loading, SetLoading] = useState(true);
 
-    const [reload, SetReload] = useState(false);
+    const [reload, SetReload] = useState(false);    
 
     const createUserManually = (email, password) => {
         SetLoading(true);
@@ -50,8 +50,8 @@ const AuthProvider = ({ children }) => {
                 axios.post('https://root-jobs-server-side.vercel.app/jwt', verifyUserWithEmail, { withCredentials: true }).then(res => { console.log(res.data) });
                 SetLoading(false);
             } else {
-                SetUser(null);
                 axios.post('https://root-jobs-server-side.vercel.app/logout', verifyUserWithEmail, { withCredentials: true }).then(res => { console.log(res.data) });
+                SetUser(null);
                 SetLoading(false);
             }
         });

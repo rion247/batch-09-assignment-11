@@ -3,11 +3,16 @@ import logoImg from '../../../../assets/logoImage.png'
 import userImg from '../../../../assets/user.png'
 import useAuthHook from './../../../../CustomeHooks/useAuthHook/useAuthHook';
 import { toast } from "react-toastify";
+import LoadingSpinner from "../../../LoadingSpinner/LoadingSpinner";
 
 const Header = () => {
 
-    const { user, signOutUser, } = useAuthHook();
+    const { user, signOutUser, loading} = useAuthHook();
     console.log(user);
+
+    if(loading){
+        return <LoadingSpinner/>
+    }
 
     const handleLogOutButton = () => {
         signOutUser()

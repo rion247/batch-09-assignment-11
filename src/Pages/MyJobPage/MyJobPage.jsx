@@ -18,7 +18,7 @@ const MyJobPage = () => {
 
     const userEmail = user?.email;
 
-    const { isPending, isError, data: jobsData = [], error } = useQuery({
+    const { isPending, isError, data: jobsData = [], error, refetch } = useQuery({
         queryKey: ['myJobsData'],
         queryFn: () => getJobsData(),
     })
@@ -57,9 +57,9 @@ const MyJobPage = () => {
                                 text: "Your file has been deleted.",
                                 icon: "success"
                             });
-                            getJobsData();
+                            refetch();
                         }
-                        
+
                     })
 
             }
