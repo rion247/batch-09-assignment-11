@@ -12,6 +12,8 @@ import AddJobPage from "../Pages/AddJobPage/AddJobPage";
 import AppliedJobsPage from "../Pages/AppliedJobsPage/AppliedJobsPage";
 import MyJobPage from "../Pages/MyJobPage/MyJobPage";
 import JobCategoryDetails from "../Pages/HomePage/JobbyCategorySection/JobCategoryDetails/JobCategoryDetails";
+import UpdateJob from "../Pages/MyJobPage/UpdateJob/UpdateJob";
+import PrivateRoute from './../components/PrivateRoute/PrivateRoute';
 
 const router = createBrowserRouter([
     {
@@ -45,7 +47,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/myJob",
-                element: <MyJobPage/>,
+                element: <PrivateRoute><MyJobPage/></PrivateRoute>,
             },
             {
                 path: "/blogs",
@@ -54,6 +56,11 @@ const router = createBrowserRouter([
             {
                 path: "/job/:id",
                 element: <JobCategoryDetails/>,
+                loader: ({params}) => fetch(`https://root-jobs-server-side.vercel.app/addJobs/${params.id}`),
+            },
+            {
+                path: "/updatejobs/:id",
+                element: <UpdateJob/>,
                 loader: ({params}) => fetch(`https://root-jobs-server-side.vercel.app/addJobs/${params.id}`),
             },
         ],
