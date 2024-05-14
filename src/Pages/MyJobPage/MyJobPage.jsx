@@ -9,10 +9,10 @@ import Swal from 'sweetalert2';
 
 const MyJobPage = () => {
 
-    const { user } = useAuthHook();
+    const { user, loading } = useAuthHook();
     const axiosSecure = useAxiosSecure()
 
-    if (!user) {
+    if (loading) {
         return <LoadingSpinner />
     }
 

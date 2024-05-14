@@ -1,8 +1,96 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
+import { Form, Input, Modal, message } from 'antd';
+import { useState } from "react";
+import "react-datepicker/dist/react-datepicker.css";
+import useAuthHook from "../../../../CustomeHooks/useAuthHook/useAuthHook";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const JobCategoryDetails = () => {
+
     const clickedJob = useLoaderData();
     const { jobBannerURL, jobTitle, jobDescription, salaryRange, jobCategory, userName, jobPostingDate, applicationDeadlineDate, jobApplicationNumber, _id, userEmail } = clickedJob;
+
+    const currentDate = new Date();
+
+    const { user } = useAuthHook();
+
+    const applicantEmail = user?.email;
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const [form] = Form.useForm();
+
+
+    const handleApplyButton = (_id) => {
+        console.log(_id)
+        showModal();
+    }
+
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const onFinish = () => {
+        message.success('Submit success!');
+    };
+
+    const onFinishFailed = () => {
+        message.error('Submit failed!');
+    };
+
+    const handleOk = () => {
+
+        form
+            .validateFields()
+            .then(values => {
+                const jobOwnerEmail = values.email;
+                const applicantUserName = values.username;
+                const applicantResumeLink = values.url;
+
+
+                if (currentDate > applicationDeadlineDate) {
+                    return toast('Time Over!!!')
+                }
+                console.log(applicantEmail)
+                console.log(jobOwnerEmail)
+
+                if (applicantEmail === jobOwnerEmail) {
+                    return toast('Sorry!!!You can not Apply for the Job.')
+                }
+
+                const forApplyJobSection = {
+                    ...clickedJob, applicantEmail, applicantUserName, applicantResumeLink
+                }
+
+                axios.post('https://root-jobs-server-side.vercel.app/appliedjobsdata', forApplyJobSection)
+                    .then(function (response) {
+                        console.log(response.data);
+                        if (response.data.acknowledged) {
+                            toast('You Have Succefully Applied for the Job');
+                            form.resetFields();
+                            setIsModalOpen(false);
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
+            })
+            .catch(errorInfo => {
+                console.error('Validation failed:', errorInfo);
+            });
+
+    };
+
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
+
+    const initialValues = {
+        username: userName,
+        email: userEmail,
+    };
 
     return (
         <div className="max-w-[350px] md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto mt-6 md:mt-8 lg:mt-10 xl:mt-12 font-poppins flex items-start border border-transparent rounded-xl flex-col mb-6 md:mb-8 lg:mb-10 xl:mb-12">
@@ -42,9 +130,44 @@ const JobCategoryDetails = () => {
                     <h6 className=" p-2 font-medium   dark:text-blue-400 rounded-full">Email: {userEmail}</h6>
                 </div>
 
-                <Link>
-                    <button className="btn w-full bg-sky-900 text-white mt-4 hover:bg-sky-800">Apply Now</button>
-                </Link>
+
+                <button onClick={() => handleApplyButton(_id)} className="btn w-full bg-sky-900 text-white mt-4 hover:bg-sky-800">Apply Now</button>
+
+                <Modal title="Apply For The Job" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} okText="Submit">
+
+                    <Form
+                        name="wrap"
+                        labelCol={{ flex: '110px' }}
+                        labelAlign="left"
+                        labelWrap
+                        wrapperCol={{ flex: 1 }}
+                        colon={false}
+                        style={{ maxWidth: 600 }}
+                        onFinish={onFinish}
+                        onFinishFailed={onFinishFailed}
+                        form={form}
+                        initialValues={initialValues}
+                    >
+                        <Form.Item label="User Name" name="username" rules={[{ required: true }]}>
+                            <Input readOnly defaultValue={initialValues.username} />
+                        </Form.Item>
+
+                        <Form.Item label="Email Address" name="email" rules={[{ required: true }]}>
+                            <Input readOnly defaultValue={initialValues.email} />
+                        </Form.Item>
+
+                        <Form.Item
+                            name="url"
+                            label="Your Resume URL"
+                            rules={[{ required: true, message: 'Please input the URL' }, { type: 'url', warningOnly: true }, { type: 'string', min: 6 }]}
+                        >
+                            <Input placeholder="Enter Resume Link Here" />
+                        </Form.Item>
+
+                    </Form>
+
+                </Modal>
+
             </div>
 
         </div>
