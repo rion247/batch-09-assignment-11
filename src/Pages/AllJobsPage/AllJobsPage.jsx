@@ -27,7 +27,7 @@ const AllJobsPage = () => {
     }
 
     return (
-        <div className="mt-6 md:mt-8 xl:mt-12 max-w-[360px] md:max-w-2xl lg:max-w-4xl xl:max-w-6xl mx-auto">
+        <div className="mt-6 md:mt-8 xl:mt-12 max-w-[360px] md:max-w-2xl lg:max-w-4xl xl:max-w-6xl mx-auto mb-10 md:mb-16 lg:mb-20 xl:mb-40">
             <Helmet>
                 <title>Root Jobs | All Jobs Page</title>
             </Helmet>

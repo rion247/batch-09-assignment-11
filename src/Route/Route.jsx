@@ -14,6 +14,9 @@ import MyJobPage from "../Pages/MyJobPage/MyJobPage";
 import JobCategoryDetails from "../Pages/HomePage/JobbyCategorySection/JobCategoryDetails/JobCategoryDetails";
 import UpdateJob from "../Pages/MyJobPage/UpdateJob/UpdateJob";
 import PrivateRoute from './../components/PrivateRoute/PrivateRoute';
+import Blog1 from "../Pages/BlogsPage/Blog1/Blog1";
+import Blog2 from "../Pages/BlogsPage/Blog2/Blog2";
+import Blog3 from "../Pages/BlogsPage/Blog3/Blog3";
 
 const router = createBrowserRouter([
     {
@@ -52,6 +55,18 @@ const router = createBrowserRouter([
             {
                 path: "/blogs",
                 element: <BlogsPage />,
+            },
+            {
+                path: "/blogs/tokens",
+                element: <Blog1 />,
+            },
+            {
+                path: "/blogs/node",
+                element: <Blog2 />,
+            },
+            {
+                path: "/blogs/code",
+                element: <Blog3 />,
             },
             {
                 path: "/job/:id",

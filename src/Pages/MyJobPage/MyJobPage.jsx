@@ -70,7 +70,7 @@ const MyJobPage = () => {
     }
 
     return (
-        <div className="mt-6 md:mt-8 xl:mt-12 max-w-[360px] md:max-w-2xl lg:max-w-4xl xl:max-w-6xl mx-auto mb-10">
+        <div className="mt-6 md:mt-8 xl:mt-12 max-w-[360px] md:max-w-2xl lg:max-w-4xl xl:max-w-6xl mx-auto mb-10 min-h-[calc(100vh-375px)]">
 
             <Helmet>
                 <title>Root Jobs | My Job Page</title>
