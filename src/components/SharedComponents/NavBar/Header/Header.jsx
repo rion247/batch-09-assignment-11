@@ -50,14 +50,17 @@ const Header = () => {
                     {
                         user && <ul tabIndex={0} className="menu menu-xs md:menu-sm dropdown-content mt-3 z-50 p-2 shadow bg-base-100 rounded-box w-40 md:w-52 lg:w-56 xl:w-60">
                             <li><a>{user?.displayName}</a></li>
-                            <li><a>Update Profile</a></li>
                             <li onClick={handleLogOutButton}><a>Logout</a></li>
                         </ul>
                     }
 
                 </div>
 
-                <Link to='/logIn' className="px-2 md:px-3 xl:px-6 py-1 md:py-2 bg-orange-400 hover:bg-orange-500 text-white rounded md:rounded lg:rounded-md xl:rounded-lg text-xs md:text-sm xl:text-lg uppercase">LogIn</Link>
+                {
+                    user ? <Link to='/logIn' className="px-2 md:px-3 hidden xl:px-6 py-1 md:py-2 bg-orange-400 hover:bg-orange-500 text-white rounded md:rounded lg:rounded-md xl:rounded-lg text-xs md:text-sm xl:text-lg uppercase">LogIn</Link>
+                        : <Link to='/logIn' className="px-2 md:px-3 flex xl:px-6 py-1 md:py-2 bg-orange-400 hover:bg-orange-500 text-white rounded md:rounded lg:rounded-md xl:rounded-lg text-xs md:text-sm xl:text-lg uppercase">LogIn</Link>
+                }
+
                 <Link to='/registration' className="px-2 md:px-3 xl:px-6 py-1 md:py-2 bg-sky-900 hover:bg-sky-950 text-white rounded md:rounded lg:rounded-md xl:rounded-lg text-xs md:text-sm  xl:text-lg uppercase">Register</Link>
             </div>
         </div>
