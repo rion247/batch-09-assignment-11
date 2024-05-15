@@ -3,20 +3,20 @@ import { useQuery } from '@tanstack/react-query';
 import useAuthHook from "../../CustomeHooks/useAuthHook/useAuthHook";
 import LoadingSpinner from './../../components/LoadingSpinner/LoadingSpinner';
 import TableForMyJobsPage from "./TableForMyJobsPage";
-import useAxiosSecure from './../../CustomeHooks/useAxiosSecure/useAxiosSecure';
+// import useAxiosSecure from './../../CustomeHooks/useAxiosSecure/useAxiosSecure';
 import axios from "axios";
 import Swal from 'sweetalert2';
 
 const MyJobPage = () => {
 
     const { user } = useAuthHook();
-    const axiosSecure = useAxiosSecure();
+    // const axiosSecure = useAxiosSecure();
 
     // if (!user) {
     //     return <LoadingSpinner />
     // }
 
-    const userEmail = user?.email;
+    const userEmail = user?.email;    
 
     const { isPending, isError, data: jobsData = [], error, refetch } = useQuery({
         queryKey: ['myJobsData'],
@@ -25,7 +25,7 @@ const MyJobPage = () => {
 
     const getJobsData = async () => {
         console.log(userEmail);
-        const { data } = await axiosSecure.get(`/myjobs/${userEmail}`);
+        const { data } = await axios.get(`https://root-jobs-server-side.vercel.app/myjobs/${userEmail}`);
         return data;
     }
 
@@ -49,7 +49,7 @@ const MyJobPage = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/myjobs/${id}`)
+                axios.delete(`https://root-jobs-server-side.vercel.app/myjobs/${id}`)
                     .then(res => {
 
                         if (res.data.deletedCount > 0) {

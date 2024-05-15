@@ -31,7 +31,7 @@ const AuthProvider = ({ children }) => {
     }
 
     const signOutUser = () => {
-        // const { data } = await axios.get('http://localhost:5000/logout', { withCredentials: true })
+        // const { data } = await axios.get('https://root-jobs-server-side.vercel.app/logout', { withCredentials: true })
         // console.log('testing', data);//test
         SetLoading(true);
         return signOut(auth);
@@ -51,11 +51,11 @@ const AuthProvider = ({ children }) => {
 
             if (currentUser) {
                 SetUser(currentUser);
-                axios.post('http://localhost:5000/jwt', verifyUserWithEmail, { withCredentials: true })
+                axios.post('https://root-jobs-server-side.vercel.app/jwt', verifyUserWithEmail, { withCredentials: true })
                     .then(res => { console.log(res.data) });//test
                 SetLoading(false);
             } else {
-                const { data } = axios.get('http://localhost:5000/logout', { withCredentials: true })
+                const { data } = axios.post('https://root-jobs-server-side.vercel.app/logout', verifyUserWithEmail, { withCredentials: true })
                 console.log('testing', data);
                 SetUser(null);
                 SetLoading(false);

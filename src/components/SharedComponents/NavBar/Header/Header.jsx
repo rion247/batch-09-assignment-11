@@ -19,7 +19,7 @@ const Header = () => {
         signOutUser()
             .then(() => {
                 toast('User Logged Out Successfully');
-                // axios.get('http://localhost:5000/logout', { withCredentials: true })
+                // axios.get('https://root-jobs-server-side.vercel.app/logout', { withCredentials: true })
                 //     .then(res => { console.log(res.data) }); test
             }).catch((error) => {
                 console.log(error);

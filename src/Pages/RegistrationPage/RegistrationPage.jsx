@@ -59,7 +59,7 @@ const RegistrationPage = () => {
                 userProfileUpdater(yourName, photoURL)
                     .then(() => {
                         console.log('Profile Updated!');
-                        axios.post('http://localhost:5000/users', forUserDataBase)
+                        axios.post('https://root-jobs-server-side.vercel.app/users', forUserDataBase)
                             .then((response) => {
                                 console.log(response.forUserDataBase);
                             })

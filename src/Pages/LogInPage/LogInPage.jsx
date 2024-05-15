@@ -34,7 +34,7 @@ const LogInPage = () => {
                 const verifyUserWithEmail = { email: result?.user?.email }
                 console.log(verifyUserWithEmail);
                 toast.success('Login Successful');
-                // axios.post('http://localhost:5000/jwt', verifyUserWithEmail, { withCredentials: true })
+                // axios.post('https://root-jobs-server-side.vercel.app/jwt', verifyUserWithEmail, { withCredentials: true })
                 //     .then(res => { console.log(res.data) }); test
                 navigate(location?.state ? location?.state : '/logIn');
                 SetReload();
@@ -51,7 +51,7 @@ const LogInPage = () => {
                 const verifyUserWithEmail = { email: result.user?.email }
                 console.log(verifyUserWithEmail);
                 toast.success('Login Successful');
-                // axios.post('http://localhost:5000/jwt', verifyUserWithEmail, { withCredentials: true })
+                // axios.post('https://root-jobs-server-side.vercel.app/jwt', verifyUserWithEmail, { withCredentials: true })
                 //     .then(res => { console.log(res.data) }); test
                 navigate(location?.state ? location?.state : '/logIn');
                 console.log(result.user);

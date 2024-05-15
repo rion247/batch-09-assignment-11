@@ -4,7 +4,7 @@ import useAuthHook from "../useAuthHook/useAuthHook";
 import { useNavigate } from "react-router-dom";
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: 'https://root-jobs-server-side.vercel.app',
     withCredentials: true,
 });
 
@@ -22,7 +22,7 @@ const useAxiosSecure = () => {
         }, (error) => {
             
             if (error.response.status === 401 || error.response.status === 403) {
-                console.log('after error response status : log out the user')
+                // console.log('after error response status : log out the user')
                 signOutUser();
                 navigate('/logIn');
             }

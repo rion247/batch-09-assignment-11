@@ -20,9 +20,6 @@ const HomePage = () => {
 
             <TestimonialSection/>
 
-
-
-
         </div>
     );
 };
