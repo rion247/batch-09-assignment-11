@@ -12,7 +12,7 @@ const AllJobsPage = () => {
     })
 
     const getJobsData = async () => {
-        const { data } = await axios.get('https://root-jobs-server-side.vercel.app/addJobs');
+        const { data } = await axios.get('http://localhost:5000/addJobs');
         return data;
     }
 

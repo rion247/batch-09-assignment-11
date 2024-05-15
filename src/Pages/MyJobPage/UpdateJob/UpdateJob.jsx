@@ -21,7 +21,7 @@ const UpdateJob = () => {
     const onSubmit = (data) => {
         const updatedDoc = { ...data, jobPostingDate: updateJobPostingDate, applicationDeadlineDate: updateApplicationDeadlineDate }
         console.log(updatedDoc);
-        axios.put(`https://root-jobs-server-side.vercel.app/myjobs/${_id}`, updatedDoc).then(response => {
+        axios.put(`http://localhost:5000/myjobs/${_id}`, updatedDoc).then(response => {
             if (response.data.modifiedCount > 0) {
                 toast('Updated Successfully');
             }

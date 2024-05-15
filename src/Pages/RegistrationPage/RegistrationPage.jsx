@@ -7,11 +7,14 @@ import { toast } from "react-toastify";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import useAuthHook from "../../CustomeHooks/useAuthHook/useAuthHook";
 import axios from "axios";
+import useAxiosSecure from "../../CustomeHooks/useAxiosSecure/useAxiosSecure";
 
 
 const RegistrationPage = () => {
 
     const { createUserManually, userProfileUpdater, SetReload } = useAuthHook();
+
+    const axiosSecure = useAxiosSecure();
 
     const [showPassWord, SetShowPassWord] = useState(false);
 
@@ -56,15 +59,17 @@ const RegistrationPage = () => {
                 userProfileUpdater(yourName, photoURL)
                     .then(() => {
                         console.log('Profile Updated!');
-                        axios.post('https://root-jobs-server-side.vercel.app/users', forUserDataBase)
+                        axios.post('http://localhost:5000/users', forUserDataBase)
                             .then((response) => {
                                 console.log(response.forUserDataBase);
                             })
                             .catch((error) => {
                                 console.log(error);
-                            });
-                        reset();
+                            });                            
+
                         SetReload();
+                        // axiosSecure.post('/jwt', { email: result.user.email }).then(res => console.log(res.data)); test
+                        reset();
                     }).catch((error) => {
                         console.log(error);
                     });

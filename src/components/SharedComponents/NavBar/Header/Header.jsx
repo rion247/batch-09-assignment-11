@@ -4,20 +4,23 @@ import userImg from '../../../../assets/user.png'
 import useAuthHook from './../../../../CustomeHooks/useAuthHook/useAuthHook';
 import { toast } from "react-toastify";
 import LoadingSpinner from "../../../LoadingSpinner/LoadingSpinner";
+// import axios from "axios";
 
 const Header = () => {
 
-    const { user, signOutUser, loading} = useAuthHook();
+    const { user, signOutUser, loading } = useAuthHook();
     console.log(user);
 
-    if(loading){
-        return <LoadingSpinner/>
+    if (loading) {
+        return <LoadingSpinner />
     }
 
     const handleLogOutButton = () => {
         signOutUser()
             .then(() => {
-                toast('User Logged Out Successfully')
+                toast('User Logged Out Successfully');
+                // axios.get('http://localhost:5000/logout', { withCredentials: true })
+                //     .then(res => { console.log(res.data) }); test
             }).catch((error) => {
                 console.log(error);
             });

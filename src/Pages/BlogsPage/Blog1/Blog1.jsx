@@ -1,6 +1,7 @@
 import img1 from '../../../assets/token.jpg';
 
 const Blog1 = () => {
+
     return (
         <div className="max-w-[350px] md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto mt-6 md:mt-8 lg:mt-10 xl:mt-12 font-poppins flex items-start border border-transparent rounded-xl flex-col mb-6 md:mb-8 lg:mb-10 xl:mb-12">
 

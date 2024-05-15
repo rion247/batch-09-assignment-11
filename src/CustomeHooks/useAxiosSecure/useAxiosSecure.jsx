@@ -1,11 +1,10 @@
 import axios from "axios";
 import { useEffect } from "react";
 import useAuthHook from "../useAuthHook/useAuthHook";
-import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const axiosSecure = axios.create({
-    baseURL: 'https://root-jobs-server-side.vercel.app',
+    baseURL: 'http://localhost:5000',
     withCredentials: true,
 });
 
@@ -19,19 +18,19 @@ const useAxiosSecure = () => {
 
         axiosSecure.interceptors.response.use((response) => {
             return response;
-        }, function (error) {
 
-            if (error.response?.status === 401 || error.response?.status === 403) {
-                signOutUser()
-                    .then(() => {
-                        navigate('/logIn');
-                    }).catch((error) => {
-                        toast(error.message);
-                    });
-            }
-            return Promise.reject(error);
+        }, (error) => {
             
+            if (error.response.status === 401 || error.response.status === 403) {
+                console.log('after error response status : log out the user')
+                signOutUser();
+                navigate('/logIn');
+            }
+
+            return Promise.reject(error);
+
         });
+
 
     }, [navigate, signOutUser])
 

@@ -23,7 +23,7 @@ const AddJobPage = () => {
 
         const postAddJobData = { ...data, userEmail: userEmail, userName: userName, jobPostingDate: jobPostingDate, applicationDeadlineDate: applicationDeadlineDate };
 
-        axios.post('https://root-jobs-server-side.vercel.app/addJobs', postAddJobData)
+        axios.post('http://localhost:5000/addJobs', postAddJobData)
             .then(function (response) {
                 console.log(response);
                 if (response.data.acknowledged === true) {

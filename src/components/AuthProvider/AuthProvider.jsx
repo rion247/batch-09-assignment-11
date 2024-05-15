@@ -12,7 +12,7 @@ const AuthProvider = ({ children }) => {
 
     const [loading, SetLoading] = useState(true);
 
-    const [reload, SetReload] = useState(false);    
+    const [reload, SetReload] = useState(false);
 
     const createUserManually = (email, password) => {
         SetLoading(true);
@@ -31,6 +31,9 @@ const AuthProvider = ({ children }) => {
     }
 
     const signOutUser = () => {
+        // const { data } = await axios.get('http://localhost:5000/logout', { withCredentials: true })
+        // console.log('testing', data);//test
+        SetLoading(true);
         return signOut(auth);
     }
 
@@ -41,16 +44,19 @@ const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
+
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-            const tokenForEmail = currentUser?.email || user?.email;
-            const verifyUserWithEmail = { email: tokenForEmail };
+            const tokenForEmail = currentUser?.email || user?.email;//test
+            const verifyUserWithEmail = { email: tokenForEmail };//test
 
             if (currentUser) {
                 SetUser(currentUser);
-                axios.post('https://root-jobs-server-side.vercel.app/jwt', verifyUserWithEmail, { withCredentials: true }).then(res => { console.log(res.data) });
+                axios.post('http://localhost:5000/jwt', verifyUserWithEmail, { withCredentials: true })
+                    .then(res => { console.log(res.data) });//test
                 SetLoading(false);
             } else {
-                axios.post('https://root-jobs-server-side.vercel.app/logout', verifyUserWithEmail, { withCredentials: true }).then(res => { console.log(res.data) });
+                const { data } = axios.post('http://localhost:5000/logout', { withCredentials: true })
+                console.log('testing', data);
                 SetUser(null);
                 SetLoading(false);
             }
@@ -60,7 +66,7 @@ const AuthProvider = ({ children }) => {
             unSubscribe();
         }
 
-    }, [reload, user])
+    }, [reload, user?.email])
 
     const authInfo = {
         user,

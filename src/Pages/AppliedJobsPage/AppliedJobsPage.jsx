@@ -22,7 +22,7 @@ const AppliedJobsPage = () => {
     })
 
     const appliedJobsData = async () => {
-        const { data } = await axios(`https://root-jobs-server-side.vercel.app/appliedjobsdata/${applicant}`);
+        const { data } = await axios(`http://localhost:5000/appliedjobsdata/${applicant}`);
         return data;
     }
 

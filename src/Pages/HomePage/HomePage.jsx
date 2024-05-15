@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet";
 import HeroBanner from "./HeroBanner/HeroBanner";
 import JobbyCategorySection from "./JobbyCategorySection/JobbyCategorySection";
+import Advertisement from "./Advertisement/Advertisement";
 
 const HomePage = () => {
     return (
@@ -13,6 +14,8 @@ const HomePage = () => {
             <HeroBanner />
 
             <JobbyCategorySection/>
+
+            <Advertisement/>
 
 
 

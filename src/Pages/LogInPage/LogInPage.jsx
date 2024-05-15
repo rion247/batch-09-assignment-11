@@ -31,9 +31,12 @@ const LogInPage = () => {
 
         signInUserManually(email, password)
             .then((result) => {
+                const verifyUserWithEmail = { email: result?.user?.email }
+                console.log(verifyUserWithEmail);
                 toast.success('Login Successful');
+                // axios.post('http://localhost:5000/jwt', verifyUserWithEmail, { withCredentials: true })
+                //     .then(res => { console.log(res.data) }); test
                 navigate(location?.state ? location?.state : '/logIn');
-                console.log(result.user);
                 SetReload();
                 reset();
             })
@@ -45,7 +48,11 @@ const LogInPage = () => {
     const handleGoogleLogInButton = () => {
         googleSignIn()
             .then((result) => {
+                const verifyUserWithEmail = { email: result.user?.email }
+                console.log(verifyUserWithEmail);
                 toast.success('Login Successful');
+                // axios.post('http://localhost:5000/jwt', verifyUserWithEmail, { withCredentials: true })
+                //     .then(res => { console.log(res.data) }); test
                 navigate(location?.state ? location?.state : '/logIn');
                 console.log(result.user);
                 SetReload();
@@ -145,16 +152,3 @@ const LogInPage = () => {
 };
 
 export default LogInPage;
-
-
-
-
-
-
-
-
-
-
-
-
-

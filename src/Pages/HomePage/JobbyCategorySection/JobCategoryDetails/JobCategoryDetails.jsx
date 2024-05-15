@@ -63,11 +63,12 @@ const JobCategoryDetails = () => {
                     ...clickedJob, applicantEmail, applicantUserName, applicantResumeLink
                 }
 
-                axios.post('https://root-jobs-server-side.vercel.app/appliedjobsdata', forApplyJobSection)
+                axios.post('http://localhost:5000/appliedjobsdata', forApplyJobSection)
                     .then(function (response) {
                         console.log(response.data);
                         if (response.data.acknowledged) {
                             toast('You Have Succefully Applied for the Job');
+                            axios.put(`http://localhost:5000/updatejobnumber/${_id}`);
                             form.resetFields();
                             setIsModalOpen(false);
                         }

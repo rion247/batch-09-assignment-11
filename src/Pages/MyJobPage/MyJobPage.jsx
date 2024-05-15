@@ -9,12 +9,12 @@ import Swal from 'sweetalert2';
 
 const MyJobPage = () => {
 
-    const { user, loading } = useAuthHook();
-    const axiosSecure = useAxiosSecure()
+    const { user } = useAuthHook();
+    const axiosSecure = useAxiosSecure();
 
-    if (loading) {
-        return <LoadingSpinner />
-    }
+    // if (!user) {
+    //     return <LoadingSpinner />
+    // }
 
     const userEmail = user?.email;
 
@@ -24,7 +24,8 @@ const MyJobPage = () => {
     })
 
     const getJobsData = async () => {
-        const { data } = await axiosSecure.get(`https://root-jobs-server-side.vercel.app/myjobs/${userEmail}`);
+        console.log(userEmail);
+        const { data } = await axiosSecure.get(`/myjobs/${userEmail}`);
         return data;
     }
 
@@ -48,7 +49,7 @@ const MyJobPage = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`https://root-jobs-server-side.vercel.app/myjobs/${id}`)
+                axios.delete(`http://localhost:5000/myjobs/${id}`)
                     .then(res => {
 
                         if (res.data.deletedCount > 0) {
