@@ -28,7 +28,7 @@ const JobbyCategorySection = () => {
     }
 
     return (
-        <div className="w-full max-w-[360px] p-4 mx-auto md:max-w-2xl lg:max-w-4xl xl:max-w-7xl md:p-12 rounded-md shadow sm:p-8 text-black mt-10 md:mt-12 lg:mt-16 xl:mt-20 font-poppins mb-16 md:mb-20 lg:mb-32 xl:mb-40">
+        <div className="w-full max-w-[360px] p-4 mx-auto md:max-w-2xl lg:max-w-4xl xl:max-w-7xl md:p-12 rounded-md shadow sm:p-8 text-black mt-10 md:mt-12 lg:mt-16 xl:mt-20 font-poppins mb-16 md:mb-20 lg:mb-32">
 
             <div className="space-y-2 col-span-full lg:col-span-1 text-start md:text-center mb-4 md:mb-8 xl:mb-12">
                 <p className="font-bold text-lg md:text-2xl lg:text-3xl xl:text-4xl mb-2 md:mb-4 xl:mb-6">Job by Category</p>

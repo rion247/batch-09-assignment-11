@@ -1,0 +1,29 @@
+[
+    {
+        "id": "AB12CD34",
+        "name": "Emily Brown",
+        "profile_pic": "https://i.ibb.co/4V8dq67/pexels-adrienn-1542085.jpg",
+        "title": "Outstanding Service!",
+        "designation": "Marketing Manager",
+        "company": "ABC Corporation",
+        "description": "I am extremely impressed with the service provided by XYZ Realty. They were attentive, knowledgeable, and always available to answer my questions. The team guided me through the entire home-buying process with professionalism and expertise, making it a stress-free experience. Their dedication to finding the perfect home for me was evident, and I am thrilled with the result. I highly recommend XYZ Realty to anyone in search of their dream home!"
+    },
+    {
+        "id": "XY89ZP76",
+        "name": "David Wilson",
+        "profile_pic": "https://i.ibb.co/Rjr0BdL/pexels-george-dolgikh-1310522.jpg",
+        "title": "Exceptional Experience!",
+        "designation": "Software Engineer",
+        "company": "XYZ Tech Solutions",
+        "description": "I had a wonderful experience working with XYZ Realty. From start to finish, their team provided excellent service and support. They listened to my needs and preferences, and they were proactive in finding properties that matched my criteria. Their knowledge of the local market was invaluable, and they provided valuable insights throughout the process. Thanks to their expertise and dedication, I found the perfect home in no time. I highly recommend XYZ Realty to anyone looking to buy or sell property!"
+    },
+    {
+        "id": "JKLMN567",
+        "name": "Sarah Johnson",
+        "profile_pic": "https://i.ibb.co/xXMGd6k/pexels-pixabay-415829-1.jpg",
+        "title": "Highly Recommend!",
+        "designation": "Accountant",
+        "company": "XYZ Financial Services",
+        "description": "I cannot speak highly enough of XYZ Realty. Their team exceeded all my expectations throughout the home-buying process. They were professional, responsive, and genuinely cared about finding the right home for me. They patiently answered all my questions and provided valuable advice along the way. Thanks to their expertise, I found my dream home quickly and effortlessly. I would recommend XYZ Realty to anyone looking for a positive and stress-free real estate experience."
+    }
+]

@@ -2,17 +2,20 @@ import { Helmet } from "react-helmet";
 import useAuthHook from "../../CustomeHooks/useAuthHook/useAuthHook";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import { useQuery } from '@tanstack/react-query'
-import axios from "axios";
+// import axios from "axios";
 import TableofAppliedJobsData from "./TableofAppliedJobsData";
+import useAxiosSecure from './../../CustomeHooks/useAxiosSecure/useAxiosSecure';
 
 
 const AppliedJobsPage = () => {
 
     const { user, loading } = useAuthHook();
 
-    if (loading) {
-        return <LoadingSpinner />
-    }
+    const axiosSecure = useAxiosSecure();
+
+    // if (loading) {
+    //     return <LoadingSpinner />
+    // }
 
     const applicant = user?.email;
 
@@ -22,7 +25,7 @@ const AppliedJobsPage = () => {
     })
 
     const appliedJobsData = async () => {
-        const { data } = await axios(`http://localhost:5000/appliedjobsdata/${applicant}`);
+        const { data } = await axiosSecure.get(`/appliedjobsdata/${applicant}`);
         return data;
     }
 

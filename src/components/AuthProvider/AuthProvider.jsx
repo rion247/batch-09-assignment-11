@@ -55,7 +55,7 @@ const AuthProvider = ({ children }) => {
                     .then(res => { console.log(res.data) });//test
                 SetLoading(false);
             } else {
-                const { data } = axios.post('http://localhost:5000/logout', { withCredentials: true })
+                const { data } = axios.get('http://localhost:5000/logout', { withCredentials: true })
                 console.log('testing', data);
                 SetUser(null);
                 SetLoading(false);
